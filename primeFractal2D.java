@@ -21,7 +21,7 @@ public static void main(String[] args) {
     testFrame.setVisible(true);
     testFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     //testFrame.setResizable();
-    int sizeX = 2000;
+    int sizeX = 10000;
     int sizeY = sizeX;
     final LinesComponent comp = new LinesComponent();
     comp.setPreferredSize(new Dimension(sizeX, sizeY));
@@ -43,9 +43,6 @@ public static void main(String[] args) {
             ArrayList<Integer> path = prm2.getSequence(Integer.parseInt(tf1.getText()));
 
             int k = 0;
-
-            int intx = sizeX/2;
-            int inty = sizeX/2;
             int x1 = sizeX/2;
             int x2 = sizeX/2;
             int y1 = sizeX/2;
@@ -55,26 +52,18 @@ public static void main(String[] args) {
                 switch(k){
                     case 0:
                     //up
-                    inty+=path.get(i);
-                    y1 = inty;
                     y2 = y1 + path.get(i);
                     break;
                     case 1:
                     //right
-                    intx+=path.get(i);
-                    x1 = intx;
                     x2 = x1 + path.get(i);
                     break;
                     case 2:
                     //down
-                    inty-=path.get(i);
-                    y1 = inty;
                     y2 = y1 - path.get(i);
                     break;
                     case 3:
                     //left
-                    intx-=path.get(i);
-                    x1 = intx;
                     x2 = x1 - path.get(i);
                     //reset
                     k = -1;
@@ -85,11 +74,12 @@ public static void main(String[] args) {
                     x2 = 0;
                     y1 = 0;
                     y2 = 0;
-                    System.out.println("Error, flawed shape generated");
                 }
                 k++;
                 Color randomColor = new Color(0, 0, 0);
                 comp.addLine(x1, y1, x2, y2, randomColor);
+                x1 = x2;
+                y1 = y2;
             }
     }
     });
